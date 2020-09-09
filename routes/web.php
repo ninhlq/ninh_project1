@@ -32,7 +32,9 @@ Route::get('cart/ajaxEmpty', 'FrontpageController@ajaxEmptyCart');
 
 Route::get('about', 'FrontpageController@about');
 
-Route::get('contact', 'FrontpageController@contact');
+Route::get('contact', 'FrontpageController@contact')->name('contact_index');
+
+Route::post('contact/save', 'ContactController@save')->name('contact_save');
 
 Route::get('checkout', 'FrontpageController@checkout');
 
@@ -104,6 +106,15 @@ Route::prefix('admin')->as('admin.')->middleware('auth.admin')->group(function()
     Route::get('user-admin/index', 'UserController@admin')->name('user.admin');
 
     Route::resource('user', 'UserController');
+
+    Route::get('contact/index', 'ContactController@contact')->name('contact.index');
+
+    Route::get('contact/{id}/show', 'ContactController@show')->name('contact.show');
+
+    Route::get('footer/index', 'FooterController@index')->name('footer.index');
+
+    Route::get('footer/edit/{id}', 'FooterController@edit')->name('footer.edit');
+
 
     Route::get('media', 'AdminController@media');
 
